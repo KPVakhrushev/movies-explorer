@@ -1,0 +1,23 @@
+.page-lending {
+  padding: 0 70px;
+}
+
+@media screen and (max-width:1024px) {
+  .page-lending {
+    padding: 0 50px 20px;
+  }
+  .page-lending__header {
+    padding: 30px;
+  }
+  .page-lending__footer {
+    padding: 0 30px;
+  }
+}
+@media screen and (max-width:550px) {
+  .page-lending {
+    padding: 0 16px;
+  }
+  .page-lending__header {
+    padding: 14px;
+  }
+}

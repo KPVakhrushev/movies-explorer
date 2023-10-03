@@ -1,0 +1,43 @@
+.page-auth {
+  display: flex;
+  flex-direction: column;
+  width: 396px;
+  min-height: 100vh;
+  margin: 0 auto;
+  flex-grow: 1;
+  padding: 70px 0;
+  box-sizing: border-box;
+}
+.page-auth__title {
+  margin: 40px 0 20px;
+}
+.page-auth__subtitle {
+  color: #A0A0A0;
+  font-size: 14px;
+  display: flex;
+  gap: 6px;
+  margin: 16px auto 0;
+}
+
+.page-auth__form {
+  flex-grow: 1;
+}
+
+@media screen and (max-width:1024px) {
+  .page-auth {
+    padding: 22.5vh 0;
+  }
+}
+@media screen and (max-width:550px) {
+  .page-auth {
+    padding: 56px 30px 30px;
+    width: 100%;
+    align-items: center;
+  }
+  .page-auth__title {
+    margin: 50px 0 56px;
+  }
+  .page-auth__subtitle {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,22 @@
+.link{
+  color: inherit;
+  text-decoration: none;
+  font-size: inherit;
+}
+.link:visited {
+  color: inherit;
+}
+.link_active {
+
+}
+.link_colored {
+  color: #3456F3;
+}
+.link_colored:visited {
+  color: #3456F3;
+}
+
+
+
+
+

@@ -1,0 +1,33 @@
+.page-movies {
+  padding: 0 70px;
+}
+.page-movies__more-button {
+  font-size: 12px;
+  font-weight: 500;
+
+  margin: 35px auto 80px;
+  display: block;
+  width: 320px;
+  height: 36px;
+  border-radius: 6px;
+  background: #F9F9F9;
+  border: 0;
+  padding: 0;
+}
+
+@media screen and (max-width:1024px) {
+  .page-movies {
+    padding: 0 30px;
+  }
+  .movies__more-button {
+    margin: 50px auto 80px;
+  }
+}
+@media screen and (max-width:550px) {
+  .page-movies {
+    padding: 0 10px;
+  }
+  .page-movies__more-button {
+    width: 240px;
+  }
+}
