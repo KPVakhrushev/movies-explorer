@@ -1,13 +1,14 @@
 import React from 'react';
 import FormCheckbox from '../FormCheckbox/FormCheckbox';
+import Button from '../Button/Button';
 import './SearchForm.css';
 
-const  SearchForm = ( ) => {
+const  SearchForm = ( {className=''} ) => {
   return (
-    <form className='search-form'>
+    <form className={`search-form ${className}`}>
       <div className='search-form__search'>
         <input name='search' placeholder='Фильм' className='search-form__input' />
-        <button type='submit' className='search-form__submit'>Найти</button>
+        <Button className='search-form__button'>Найти</Button>
       </div>
       <label className='search-form__filter'>
         Короткометражки

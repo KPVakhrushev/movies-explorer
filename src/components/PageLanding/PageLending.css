@@ -1,23 +1,23 @@
 .page-lending {
-  padding: 0 70px;
+  padding: 0 70px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width:1024px) {
   .page-lending {
-    padding: 0 50px 20px;
+    padding: 0 30px 20px;
   }
-  .page-lending__header {
-    padding: 30px;
-  }
-  .page-lending__footer {
-    padding: 0 30px;
+  .page-lending__main {
+    padding: 0 20px 0;
   }
 }
+
 @media screen and (max-width:550px) {
   .page-lending {
-    padding: 0 16px;
+    padding: 0 15px 20px;
   }
-  .page-lending__header {
-    padding: 14px;
+  .page-lending__main {
+    padding: 0;
   }
 }

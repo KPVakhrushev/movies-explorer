@@ -7,9 +7,8 @@
   color:black;
   max-width: 1280px;
   min-width: 250px;
-  margin: auto;
-  position: relative;
+  margin: 0 auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }

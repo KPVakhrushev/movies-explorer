@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button/Button';
 import FormInput from '../FormInput/FormInput';
 import './Form.css';
 
@@ -9,7 +10,7 @@ function Login({title, onSubmit, fields, className}){
         {fields.map( item => <FormInput {...item} key={item.name} />) }
         <span className='form__error-msg form__error-msg_visible'>Что-то пошло не так...</span>
       </fieldset>
-      <button type="submit" className="form__button" title="" >{title}</button>
+      <Button>{title}</Button>
     </form>
   );
 }

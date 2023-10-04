@@ -13,8 +13,9 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  padding: 0 calc((100vw - 100%)/2);
+
   width: 100vw;
+  padding: 0 calc((100vw - 100%)/2);
   margin: 0 0 0 calc((100vw - 100%)/-2);
 }
 .header_theme_light {
@@ -23,6 +24,9 @@
 }
 .header__link {
   margin: 10px;
+}
+.header__link_active {
+  font-weight: 500;
 }
 .header__signin {
   color: #000;
@@ -44,7 +48,7 @@
   flex-grow: 1;
   text-align: center;
   margin: auto;
-  padding-left: 68px;
+  padding-left: 68px; /* в макете ссылки не по центру */
 }
 .header__burger {
   background-image: url('../../images/burger-menu.svg') ;

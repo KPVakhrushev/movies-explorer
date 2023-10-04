@@ -9,7 +9,7 @@ const  MoviesCard = ({movie} ) => {
   return (
       <li className='movie-card'>
         <img src={apiMovies.getThumbUrl(movie)} alt={movie.nameRU} className='movie-card__image'/>
-        <h2 className='movie-card__title'>ыыыыыыыыыыы ыыыыыыыыыыы ыыыыыыыыыыыыыы {movie.nameRU}</h2>
+        <h2 className='movie-card__title'>{movie.nameRU}</h2>
         <span className={'movie-card__save '+ (movie.id%2? '': 'movie-card__save_saved')} />
         <span className="movie-card__duration">{duration}</span>
       </li>

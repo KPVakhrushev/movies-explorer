@@ -13,7 +13,7 @@ const PageLending = () => {
   return (
     <div className='page-lending'>
       <Header className='page-lending__header'/>
-      <main>
+      <main className='page-lending__main'>
         <Promo/>
         <Project/>
         <Techs/>

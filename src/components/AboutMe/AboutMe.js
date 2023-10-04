@@ -1,9 +1,8 @@
 import React from 'react';
 import Link from '../Link/Link';
 import Title from '../Title/Title';
-import './AboutMe.css';
 import photo from '../../images/photo.png';
-
+import './AboutMe.css';
 
 const  AboutMe = ( ) => {
   const name = "Виталий"

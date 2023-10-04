@@ -3,6 +3,9 @@
   text-decoration: none;
   font-size: inherit;
 }
+.link:hover {
+  opacity: 0.7;
+}
 .link:visited {
   color: inherit;
 }
@@ -15,8 +18,3 @@
 .link_colored:visited {
   color: #3456F3;
 }
-
-
-
-
-

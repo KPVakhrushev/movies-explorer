@@ -3,8 +3,10 @@ import { useMediaQuery } from 'react-responsive';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import MoviesCardList from '../Movies/Movies'
-import SearchForm from '../SearchForm/SearchForm'
+import MoviesCardList from '../Movies/Movies';
+import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader'
+
 import './PageMovies.css';
 import { useEffect, useState } from 'react';
 
@@ -20,6 +22,8 @@ const PageMovies = ({saved}) => {
 
   const [movies, setMovies] = useState([]);
   const [moviesOnPage, setMoviesOnPage] = useState(getMoviesPerPage());
+  const Loader = !movies.length? <Preloader/>: '';
+
   const displayMore = () => setMoviesOnPage((old)=> old + getMoviesPerPage());
   useEffect(()=>{
     apiMovies.get(saved).then((movies)=>{
@@ -28,16 +32,17 @@ const PageMovies = ({saved}) => {
     });
   }, [saved]);
 
-
   return (
+
     <div className='page-movies'>
       <Header theme='light'/>
       <main>
-        <SearchForm/>
+        <SearchForm className='page-movies__search-form'/>
         {<MoviesCardList movies={movies.slice(0, moviesOnPage)}/>}
+        {Loader}
         {moviesOnPage < movies.length && <button className='page-movies__more-button' onClick={displayMore}>Еще</button> }
       </main>
-      <Footer/>
+      <Footer className='page-movies__footer'/>
     </div>
   )
 }

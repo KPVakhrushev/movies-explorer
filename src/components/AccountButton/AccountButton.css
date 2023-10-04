@@ -15,6 +15,9 @@
   padding: 9px 20px 0 11px;
   margin: 0;
 }
+.account-button:hover {
+  opacity: 0.8;
+}
 .account-button:visited {
   color: #000;
 }

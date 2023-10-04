@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Link from '../Link/Link';
-import './Header.css';
 import Logo from '../Logo/Logo';
 import AccountButton from '../AccountButton/AccountButton';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import { menu as menuLinks } from '../../utils/constants';
 import MobileMenu from '../MobileMenu/MobileMenu';
+import './Header.css';
 
 const  Header = ( {theme='', className=''} ) => {
   const user = React.useContext(CurrentUserContext);
@@ -24,7 +24,7 @@ const  Header = ( {theme='', className=''} ) => {
     }
     else{
       buttons = <AccountButton theme={theme}/>
-      menu = <nav className='header__menu'> {menuLinks.map(item=><Link to={item.link} key={item.link} className='header__link' >{item.title}</Link>)} </nav>
+      menu = <nav className='header__menu'> {menuLinks.map(item=><Link to={item.link} key={item.link} className='header__link' activeClassName='header__link_active' >{item.title}</Link>)} </nav>
     }
   }
   else{

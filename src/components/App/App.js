@@ -6,7 +6,7 @@ import PageMovies from '../PageMovies/PageMovies.js';
 import PageProfile from '../PageProfile/PageProfile.js';
 import PageAuth from '../PageAuth/PageAuth.js';
 import { useState } from 'react';
-import './App.js'
+import './App.css';
 
 function App() {
   const [user, setUser] = useState({ name: 'Виталик', email: 'qwe@qwe.ru'})
