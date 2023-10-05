@@ -1,0 +1,28 @@
+.button {
+  color: #FFF;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+
+  background-color: #3456F3;
+  border-radius: 3px;
+  height: 45px;
+  width: 100%;
+  margin: 0;
+
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.button:disabled {
+  color: #C2C2C2;
+  background: #F8F8F8;
+}
+.button:hover {
+  opacity: 0.8;
+}
+@media screen and (max-width:550px) {
+  .button {
+    height: 45px;
+  }
+}

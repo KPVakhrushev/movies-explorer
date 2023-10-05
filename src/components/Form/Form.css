@@ -1,0 +1,24 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.form__error {
+  color: #FF3055;
+}
+.form__error-msg {
+  color: #FF3055;
+  font-size: 10px;
+  display: none;
+  padding-top: 6px;
+}
+.form__error-msg_visible {
+  display: inline;
+}
+.form__fieldset {
+  margin: 0;
+  padding: 0 0 20px 0;
+  border: none;
+}
