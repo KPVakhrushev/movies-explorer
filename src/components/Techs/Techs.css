@@ -1,9 +1,9 @@
 .techs {
   color: #000;
   background: #F5F5F5;
-  padding: 100px calc((100vw - 100%)/2);
-  width: 100vw;
-  margin: 0 0 0 calc((100vw - 100%)/-2);
+  padding: 100px 0;
+  width: 100%;
+  margin: 0;
   box-sizing: border-box;
 }
 .techs__title {

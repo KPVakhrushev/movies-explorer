@@ -5,6 +5,7 @@ import Link from '../Link/Link';
 import './Promo.css';
 
 const  Promo = ( ) => {
+  const scrollTo = (id)=> document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   return (
     <section className='promo'>
       <img className='promo__img' src={imgPlanetWeb} alt="Планета вэб" />
@@ -12,7 +13,7 @@ const  Promo = ( ) => {
       <p className='promo__subtitle'>
         Листайте ниже, чтобы узнать больше про этот проект и его создателя.
       </p>
-      <Link className='promo__more-link' href='#about-project'>Узнать больше</Link>
+      <Link className='promo__more-link' onClick={scrollTo('about-project')}>Узнать больше</Link>
     </section>
   )
 }

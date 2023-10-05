@@ -27,23 +27,26 @@ const PageProfile = ( {logout} ) => {
   return (
     <div className='page-profile'>
       <Header theme='light'/>
-      <main className='page-profile__main'>
-        <Title className='page-profile__title' type='page'>Привет, {user?.name}</Title>
+      <main>
+        <section>
+          <Title className='page-profile__title' type='page'>Привет, {user?.name}</Title>
+          <form className='page-profile__form' onChange={()=>setDisabled(false)} onSubmit={handleSubmit}>
+              <label>
+                Имя
+                <input className="" value={name} disabled={!isEditMode} onChange={(v)=>setName(v.target.value)} placeholder='Имя' required={true}  minLength={1} maxLength={200}/>
+              </label>
 
-        <form className='page-profile__form' onChange={()=>setDisabled(false)} onSubmit={handleSubmit}>
-            <label>
-              Имя <input className="" value={name} disabled={!isEditMode} onChange={(v)=>setName(v.target.value)}/>
-            </label>
+              <label>
+                E-mail
+                <input className="" value={email} disabled={!isEditMode} onChange={v=>setEmail(v.target.value)} placeholder='Email' required={true} minLength={1} maxLength={20}/>
+              </label>
 
-            <label>
-              E-mail <input className="" value={email} disabled={!isEditMode} onChange={v=>setEmail(v.target.value)}/>
-            </label>
-
-            <div className='page-profile__actions'>
-              {error && <p className='page-profile__error'>{error}</p>}
-              {isEditMode? saveButton :actions}
-            </div>
-        </form>
+              <div className='page-profile__actions'>
+                {error && <p className='page-profile__error'>{error}</p>}
+                {isEditMode? saveButton :actions}
+              </div>
+          </form>
+        </section>
       </main>
     </div>
   )

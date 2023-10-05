@@ -20,6 +20,11 @@
   border: none;
   width: calc(100% - 90px);
 }
+.search-form__input:focus {
+  outline: 1px rgb(52, 86, 243) solid;
+  /* background-color: rgba(52, 86, 243, 0.1);*/
+  border-radius: 48px;
+}
 .search-form__input::placeholder {
   color: #A0A0A0;
 }
@@ -37,6 +42,10 @@
   gap: 15px;
   flex-direction: row-reverse;
   justify-content: flex-end;
+}
+
+.search-form__filter:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width:1024px) {

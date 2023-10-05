@@ -16,3 +16,8 @@
 .form-input__input::placeholder{
   color: #CCC;
 }
+.form-input__input:focus {
+  outline: 1px #3456F3 solid;
+  background-color: rgba(52, 86, 243, 0.1);
+  border-radius: 3px;
+}

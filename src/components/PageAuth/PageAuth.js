@@ -22,8 +22,8 @@ function PageAuth(props){
           title: 'Войти',
           onSubmin: (e)=>{ e.preventDefault() },
           fields:[
-            {title:'Email', name:"name", minLength:1, maxLength:200, required: true, placeholder:"Имя"},
-            {title:'Пароль',name:"password", minLength:6, maxLength:"20", required:true, type:"password"}
+            {title:'Email', name:"name", minLength:1, maxLength:200, required: true, placeholder:"email@mail.ru"},
+            {title:'Пароль',name:"password", minLength:6, maxLength:"20", required:true, type:"password", placeholder:"Пароль"}
           ]
         }
       };
@@ -40,7 +40,7 @@ function PageAuth(props){
             fields:[
               {title:'Имя', name:"name", minLength:1, maxLength:200, required: true, placeholder:"Имя"},
               {title:'Email', name:"email", type:"email" ,minLength:1, maxLength:200, required: true, placeholder:"email@mail.ru"},
-              {title:'Пароль',name:"password", minLength:1, maxLength:"200", required:true}
+              {title:'Пароль',name:"password", minLength:1, maxLength:"200", required:true, placeholder:"Пароль"}
             ]
           }
         };

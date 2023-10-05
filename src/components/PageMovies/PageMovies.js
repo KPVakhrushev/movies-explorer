@@ -37,10 +37,14 @@ const PageMovies = ({saved}) => {
     <div className='page-movies'>
       <Header theme='light'/>
       <main>
-        <SearchForm className='page-movies__search-form'/>
-        {<MoviesCardList movies={movies.slice(0, moviesOnPage)}/>}
-        {Loader}
-        {moviesOnPage < movies.length && <button className='page-movies__more-button' onClick={displayMore}>Еще</button> }
+        <section>
+          <SearchForm className='page-movies__search-form'/>
+        </section>
+        <section>
+          {<MoviesCardList movies={movies.slice(0, moviesOnPage)}/>}
+          {Loader}
+          {moviesOnPage < movies.length && <button className='page-movies__more-button' onClick={displayMore} type='button'>Еще</button> }
+        </section>
       </main>
       <Footer className='page-movies__footer'/>
     </div>

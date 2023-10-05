@@ -11,7 +11,7 @@ import './Header.css';
 const  Header = ( {theme='', className=''} ) => {
   const user = React.useContext(CurrentUserContext);
   const logged = Boolean(user?.name);
-  const isMobile = useMediaQuery({ query: '(max-width:1024px)' })
+  const isMobile = useMediaQuery({ query: '(max-width:768px)' })
   const [menuOpened, setMenuOpened] = useState(false);
   const handleCloseMenu = ()=> setMenuOpened(false);
 
@@ -19,7 +19,7 @@ const  Header = ( {theme='', className=''} ) => {
 
   if(logged){
     if(isMobile){
-      buttons = <button className={'header__burger' + (theme?` header__burger_theme_${theme}`:'')} onClick={()=>setMenuOpened(true)}/>
+      buttons = <button className={'header__burger' + (theme?` header__burger_theme_${theme}`:'')} onClick={()=>setMenuOpened(true)} type='button'/>
       menu = <MobileMenu opened={menuOpened} onClose={handleCloseMenu}/>
     }
     else{
