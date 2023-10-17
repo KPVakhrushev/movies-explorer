@@ -4,6 +4,7 @@
   flex-direction: column;
 }
 .search-form__search {
+  position: relative;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #E8E8E8;
@@ -19,7 +20,9 @@
   line-height: normal;
   border: none;
   width: calc(100% - 90px);
+  padding-left: 15px;
 }
+
 .search-form__input:focus {
   outline: 1px rgb(52, 86, 243) solid;
   /* background-color: rgba(52, 86, 243, 0.1);*/
@@ -27,6 +30,15 @@
 }
 .search-form__input::placeholder {
   color: #A0A0A0;
+}
+.search-form__input_error{
+  outline: 1px red solid;
+  border-radius: 48px;
+}
+.search-form__error{
+  color: red;
+  position: absolute;
+  bottom: -20px;
 }
 .search-form__button{
   font-size: 11px;

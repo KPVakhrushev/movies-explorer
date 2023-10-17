@@ -10,7 +10,7 @@ import './Header.css';
 
 const  Header = ( {theme='', className=''} ) => {
   const user = React.useContext(CurrentUserContext);
-  const logged = Boolean(user?.name);
+  const logged = Boolean(user?.email);
   const isMobile = useMediaQuery({ query: '(max-width:768px)' })
   const [menuOpened, setMenuOpened] = useState(false);
   const handleCloseMenu = ()=> setMenuOpened(false);

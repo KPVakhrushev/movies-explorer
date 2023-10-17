@@ -8,6 +8,9 @@ class ApiMovies extends Api{
   getThumbUrl(movieData){
     return this._baseUrl + movieData.image.formats.thumbnail.url;
   }
+  getImageUrl(movieData){
+    return this._baseUrl + movieData.image.url;
+  }
 }
 
 export default ApiMovies;

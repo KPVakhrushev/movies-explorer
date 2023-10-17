@@ -87,9 +87,14 @@
 .page-profile__logout:visited {
   color: #FF3055;
 }
-.page-profile__error {
-  color: #FF3055;
+.page-profile__msg {
   display: block;
+}
+.page-profile__msg_type_error {
+  color: #FF3055;
+}
+.page-profile__msg_type_info {
+  color: #000;
 }
 
 @media screen and (max-width:1024px) {
