@@ -23,13 +23,15 @@ function App() {
       setUser(answer);
     })
     .catch((er)=>{
+      debugger;
+      logout();
       setUser({});
-      if(er.status!==404) handleError(er, languge.ERROR_AUTH);
+      if(er.status!==404 && er.status!==401) handleError(er, languge.ERROR_AUTH);
       localStorage.clear();
     })
    }
   const logout = (e) => {
-    e.preventDefault();
+    if(e) e.preventDefault();
     apiMain.logout().then(()=>{
       setUser({});
       navigate('/', { replace: true });
@@ -70,7 +72,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={user}>
       <Routes>
-        <Route path="/"             element={<ProtectedRoute element={<Lending/>}/>}/>
+        <Route path="/"             element={<Lending/>}/>
         <Route path="/movies"       element={<ProtectedRoute element={<PageMovies handleError={handleError}/> } key='movies'/>} />
         <Route path="/saved-movies" element={<ProtectedRoute element={<PageMovies handleError={handleError}  key='saved-movies' isSavedOnly={true}  /> }/>} />
         <Route path="/profile"      element={<ProtectedRoute element={<PageProfile logout={logout} handleSubmit={handleUpdateMe} />}/>} />

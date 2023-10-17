@@ -7,8 +7,7 @@ import Preloader from '../Preloader/Preloader'
 // он также может взять неограниченное число пропсов и передать их новому компоненту
 const ProtectedRoute = ({ element, ...props  }) => {
   const user = React.useContext(CurrentUserContext);
-  //return ( user===undefined? <Preloader/> :  (user?.email ? element  : <Navigate to="/signin" replace/> ) )
-  return element;
+  return ( user===undefined? <Preloader/> :  (user?.email ? element  : <Navigate to="/signin" replace/> ) )
 }
 
 export default ProtectedRoute;

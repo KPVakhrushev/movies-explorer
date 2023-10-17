@@ -25,6 +25,9 @@
   height: 24px;
   margin: 10px 0;
 }
+.movie-card__save:hover {
+  cursor: pointer;
+}
 .movie-card__save_saved {
   background-image: url('../../images/saved.svg');
 }
@@ -32,6 +35,9 @@
   width: 100%;
   aspect-ratio: 270 / 151;
   object-fit: cover;
+}
+.movie-card__image:hover {
+  cursor: pointer;
 }
 .movie-card__duration {
   color: #A0A0A0;
