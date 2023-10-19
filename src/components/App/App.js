@@ -59,9 +59,7 @@ function App() {
     });
   }
   const handleUpdateMe = (values)=>{
-    return apiMain.updateMe(values)
-      .then(()=>setUser(values))
-      .catch((e)=>handleError(e));
+    return apiMain.updateMe(values).then(()=>setUser(values));
   }
   React.useEffect(()=>{
     if(user===undefined){
