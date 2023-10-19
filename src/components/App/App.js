@@ -26,7 +26,7 @@ function App() {
     })
     .catch((er)=>{
       setUser({});
-      handleError(er);
+      if(er.status!==401) handleError(er);
       localStorage.clear();
       logout();
     });

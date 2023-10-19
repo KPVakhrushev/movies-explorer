@@ -18,6 +18,7 @@ class Api {
         })
       }
       catch(e){
+        debugger;
         return Promise.reject( {message: language.ERROR_ON_SERVER} );
       }
     })
