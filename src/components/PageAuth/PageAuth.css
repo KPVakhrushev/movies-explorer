@@ -30,7 +30,7 @@
     padding: 22.5vh 0;
   }
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width:480px) {
   .page-auth {
     padding: 56px 30px 30px;
     width: 100%;

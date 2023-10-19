@@ -107,7 +107,7 @@
     letter-spacing: -1.12px;
   }
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width:480px) {
   .about-me {
     padding: 70px 0 150px;
   }

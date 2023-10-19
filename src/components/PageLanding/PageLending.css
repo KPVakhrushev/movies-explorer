@@ -23,7 +23,7 @@
   }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:480px) {
   .page-lending {
     --page-lending__padding: 15px;
   }
