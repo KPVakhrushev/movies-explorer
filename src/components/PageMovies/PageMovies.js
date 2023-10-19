@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import MoviesFactory from '../../classess/MoviesFactory';
-import { useMediaQuery } from 'react-responsive';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -33,7 +32,7 @@ const PageMovies = ({isSavedOnly=false, handleError}) => {
 
   const handleLike = (movie)=> moviesFactory.current.toggleLike(movie);
   const handleSearch = (filter) => moviesFactory.current.setFilter(filter);
-  const handleChange = ({short}) => moviesFactory.current.setFilter({short});
+  const handleChange = (filter, target) => target.name==='short' && moviesFactory.current.setFilter(filter) ;
   const handleDisplayMore = ()=> setMoviesOnPage(old => old + getCountCards()[1]);
 
 

@@ -3,14 +3,12 @@ import config from '../utils/config';
 import Movie from './Movie';
 class MoviesFactory {
   static #loaded;
-  static #saved;
 
   #isSavedOnly;
   #filter;
   #restored;
   #restoredFilter;
   #filtered;
-  #promise;
   #listeners;
 
   constructor (isSavedOnly){
@@ -44,7 +42,7 @@ class MoviesFactory {
     this.#filter.phrase = phrase??this.#filter.phrase;
     /* не будем загружать если фильтруются сохраненные данные только по хронометражу */
     const needLoad = (this.#restored && this.#filter.phrase===this.#restoredFilter.phrase && this.#restoredFilter.short===false) ? false : !MoviesFactory.#loaded;
-    if(!this.#filter.phrase && !this.#isSavedOnly) return;
+
     if(needLoad) return this.#load();
     else this.#applyFilter();
   }
@@ -82,12 +80,11 @@ class MoviesFactory {
   }
   #load (){
     this.#filtered = null;
-    this.#promise = Promise.all([apiMovies.get(), apiMain.getMovies()])
+    Promise.all([apiMovies.get(), apiMain.getMovies()])
     .then(([movies, savedMovies])=> {
       const map = {};
       this.#restored = null;
       savedMovies.forEach(movie => {map[movie.movieId] = movie._id });
-      MoviesFactory.#saved = savedMovies;
       MoviesFactory.#loaded = movies.map( movie => this.#createMoviefromApiData(movie, map[movie.id]) );
       this.#applyFilter();
       return this.#filtered;
@@ -109,7 +106,7 @@ class MoviesFactory {
     try{
       const storedMovies = JSON.parse (localStorage.getItem('movies') );
       const storedFilter = JSON.parse ( localStorage.getItem('filter') );
-      if(Array.isArray(storedMovies) && storedFilter?.phrase){
+      if(Array.isArray(storedMovies)){
         this.#filter = storedFilter;
         this.#restoredFilter = {...storedFilter};
         this.#restored = storedMovies.map(movie=>new Movie(movie));
@@ -119,7 +116,7 @@ class MoviesFactory {
     catch(e){}
   }
   #saveStateToStorage(){
-    if(this.#isSavedOnly || !this.#filter.phrase) return;
+    if(this.#isSavedOnly) return;
     localStorage.setItem('movies', JSON.stringify(this.#filtered));
     localStorage.setItem('filter', JSON.stringify(this.#filter));
   }

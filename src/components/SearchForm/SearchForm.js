@@ -9,9 +9,9 @@ const  SearchForm = ( {handleSearch, handleChange, className='', initial} ) => {
   const [error, setError]   = useState('');
   const onChange = (event) => {
     const newValues = { ...values, [event.target.name]: event.target.type==='checkbox'?event.target.checked:event.target.value };
-    handleChange(newValues);
+    handleChange(newValues, event.currentTarget);
     setValues(newValues);
-    if(newValues.phrase) setError(null)
+    setError(null)
   };
   const onSubmit= (e)=>{
     e.preventDefault();
