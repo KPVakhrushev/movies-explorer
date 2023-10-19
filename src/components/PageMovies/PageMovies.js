@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import MoviesFactory from '../../classess/MoviesFactory';
 
 import Header from '../Header/Header';
@@ -13,6 +14,7 @@ import './PageMovies.css';
 
 
 const PageMovies = ({isSavedOnly=false, handleError}) => {
+  const user = React.useContext(CurrentUserContext);
   const getCountCards = ()=> config.COUNT_CARDS_BY_WIDTH.find(param => window.innerWidth < param[2]);
   useEffect(() => {
     const handleWindowResize = () => setMoviesOnPage(getCountCards()[0]);
@@ -23,7 +25,7 @@ const PageMovies = ({isSavedOnly=false, handleError}) => {
   const [, refresh] = useState();
   const [moviesOnPage, setMoviesOnPage] = useState(getCountCards()[0]);
   const moviesFactory = useRef( );
-  moviesFactory.current = moviesFactory.current?? new MoviesFactory(isSavedOnly);
+  moviesFactory.current = moviesFactory.current?? new MoviesFactory(isSavedOnly, user._id);
   moviesFactory.current.subscribe(refresh, (e)=>handleError(e, language.ERROR_API_MOVIES))
   const [movies, filter] = moviesFactory.current.getState();
 

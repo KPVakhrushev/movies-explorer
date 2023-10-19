@@ -3,6 +3,7 @@ import config from '../utils/config';
 import Movie from './Movie';
 class MoviesFactory {
   static #loaded;
+  static #userId;
 
   #isSavedOnly;
   #filter;
@@ -11,7 +12,11 @@ class MoviesFactory {
   #filtered;
   #listeners;
 
-  constructor (isSavedOnly){
+  constructor (isSavedOnly, userId){
+    if(MoviesFactory.#loaded && MoviesFactory.#userId!==userId){
+      MoviesFactory.#loaded = null;
+    }
+    MoviesFactory.#userId = userId;
     this.#isSavedOnly = isSavedOnly;
     this.#filter = {phrase:'', short:false};
     this.#listeners = {update:()=>{}, error:(e)=>{}}
