@@ -29,7 +29,6 @@ function App() {
       setUser({});
       if(er.status!==401) handleError(er);
       localStorage.clear();
-      logout();
     });
    }
   const logout = (e) => {
