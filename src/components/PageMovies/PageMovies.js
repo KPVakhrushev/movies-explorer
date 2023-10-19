@@ -28,7 +28,10 @@ const PageMovies = ({isSavedOnly=false, handleError}) => {
   const [movies, filter] = moviesFactory.current.getState();
 
   const handleLike = (movie)=> moviesFactory.current.toggleLike(movie);
-  const handleSearch = (filter) => moviesFactory.current.setFilter(filter);
+  const handleSearch = (filter) => {
+    setMoviesOnPage(getCountCards()[0]);
+    moviesFactory.current.setFilter(filter);
+  }
   const handleChange = (filter, target) => target.name==='short' && moviesFactory.current.setFilter(filter) ;
   const handleDisplayMore = ()=> setMoviesOnPage(old => old + getCountCards()[1]);
 
