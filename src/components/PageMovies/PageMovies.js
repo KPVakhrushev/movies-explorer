@@ -8,15 +8,12 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader'
 
 import language from '../../utils/language.js';
+import config from '../../utils/config';
 import './PageMovies.css';
 
 
 const PageMovies = ({isSavedOnly=false, handleError}) => {
-  const getCountCards = ()=> {
-    const isMobile = window.innerWidth <= 550;
-    const isTablet = window.innerWidth <= 1024;
-    return [isMobile?5:isTablet?8:16, isMobile?2:isTablet?2:4];
-  }
+  const getCountCards = ()=> config.COUNT_CARDS_BY_WIDTH.find(param => window.innerWidth < param[2]);
   useEffect(() => {
     const handleWindowResize = () => setMoviesOnPage(getCountCards()[0]);
     window.addEventListener('resize', handleWindowResize);
@@ -37,6 +34,7 @@ const PageMovies = ({isSavedOnly=false, handleError}) => {
 
 
   const display = movies===null? <Preloader/>:
+
   movies===undefined? '':
     !movies.length? language.MSG_NOT_FOUND:
     (
