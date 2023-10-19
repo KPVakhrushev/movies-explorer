@@ -8,7 +8,7 @@ class ApiMain extends Api{
     return this._json('POST', '/signin',{password, email});
   }
   logout(){
-    return this._fetch('POST', '/logout');
+    return this._json('POST', '/logout');
   }
 
   /* возвращает информацию о пользователе (email и имя) */

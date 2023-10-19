@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../Button/Button';
+import Error from '../Error/Error';
 import FormInput from '../FormInput/FormInput';
 import useFormValidation from '../useFormValidation/useFormValidation';
 
@@ -8,7 +9,8 @@ import './Form.css';
 function Form({title, handleSubmit, fields, className, validation, ...props}){
   const onSubmit = (event) => {
     event.preventDefault();
-    handleSubmit(values).catch((e)=>funcs.setErrors({submit:e}));
+    handleSubmit(values)
+      .catch((e)=>funcs.setErrors({submit: <Error className='form__error-msg form__error_position_submit' error={e} /> }));
   };
   const {values, errors, ...funcs } =  useFormValidation({}, validation);
   React.useEffect(() => {
@@ -27,8 +29,7 @@ function Form({title, handleSubmit, fields, className, validation, ...props}){
           )
         }
       </fieldset>
-      <span className='form__error-msg form__error_position_submit '>{errors?.submit}</span>
-
+      {errors?.submit}
       <Button disabled={errors?.submit??true}>{title}</Button>
     </form>
   );

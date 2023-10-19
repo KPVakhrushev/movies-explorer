@@ -1,4 +1,10 @@
 .error {
+  position: relative;
+  color: red;
+}
+
+.error__type_popup {
+  color: #000;
   bottom: 0;
   right: 0;
   visibility: hidden;

@@ -26,7 +26,10 @@ const PageMovies = ({isSavedOnly=false, handleError}) => {
   const [moviesOnPage, setMoviesOnPage] = useState(getCountCards()[0]);
   const moviesFactory = useRef( );
   moviesFactory.current = moviesFactory.current?? new MoviesFactory(isSavedOnly, user._id);
-  moviesFactory.current.subscribe(refresh, (e)=>handleError(e, language.ERROR_API_MOVIES))
+  moviesFactory.current.subscribe(refresh, (e)=>{
+    e.message = language.ERROR_API_MOVIES;
+    handleError(e);
+  })
   const [movies, filter] = moviesFactory.current.getState();
 
   const handleLike = (movie)=> moviesFactory.current.toggleLike(movie);

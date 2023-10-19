@@ -12,36 +12,35 @@ import Error from '../Error/Error.js';
 
 import './App.css';
 import { apiMain } from '../../classess/ApiMain.js';
-import languge from '../../utils/language.js';
 
 function App() {
   const [user, setUser] = useState();
   const [error, setError] = useState();
   const navigate = useNavigate();
+  const handleError = (e)=>{
+    setError(<Error error={e} popup="true" handleClose={()=>setError('')}/>)
+  }
   const getUser   = function(){
     apiMain.getMe().then((answer)=>{
       setUser(answer);
     })
     .catch((er)=>{
-      logout();
       setUser({});
-      if(er.status!==404 && er.status!==401) handleError(er, languge.ERROR_AUTH);
+      handleError(er);
       localStorage.clear();
-    })
+      logout();
+    });
    }
   const logout = (e) => {
     if(e) e.preventDefault();
     apiMain.logout().then(()=>{
       setUser({});
       navigate('/', { replace: true });
-    }).catch(handleError)
+    })
+    .catch(e=>handleError(e))
     localStorage.clear();
   }
-  const handleError = (e, message='')=>{
-    if(process.env.NODE_ENV==="development") console.log(e);
-    if(message) return setError(message);
-    else return e;
-  }
+
   const handleSignIn= (user)=>{
     return handleAuth(user, apiMain.signIn)
   }
@@ -49,18 +48,14 @@ function App() {
     return handleAuth(user, apiMain.signUp)
   }
   const handleAuth = function(user, method){
-    return  new Promise((resolve, reject)=>{
-      method.bind(apiMain)(user)
+      return method.bind(apiMain)(user)
       .then((answer)=>{
         setUser(answer);
-        resolve();
         navigate('/movies',{ replace: true });
-
-      }).catch( ()=> reject(languge.ERROR_) )
-    });
+      });
   }
   const handleUpdateMe = (values)=>{
-    return apiMain.updateMe(values).then(()=>setUser(values));
+    return apiMain.updateMe(values).then(()=>{ {setUser(values) }});
   }
   React.useEffect(()=>{
     if(user===undefined){
@@ -68,20 +63,20 @@ function App() {
     }
   }, [user]);
 
-  const authorized = user===undefined?undefined:Boolean(user?._id);
+  const authorized = user===undefined?undefined:Boolean(user?.email);
   return (
     <CurrentUserContext.Provider value={user}>
       <Routes>
         <Route path="/"             element={<Lending/>}/>
-        <Route path="/movies"       element={<ProtectedRoute condition={authorized} element={<PageMovies handleError={handleError}  key='movies'/> }  />}/>
-        <Route path="/saved-movies" element={<ProtectedRoute condition={authorized} element={<PageMovies handleError={handleError}  key='saved-movies' isSavedOnly={true}  /> }/>}/>
+        <Route path="/movies"       element={<ProtectedRoute condition={authorized} element={<PageMovies  key='movies' handleError={handleError} /> }  />}/>
+        <Route path="/saved-movies" element={<ProtectedRoute condition={authorized} element={<PageMovies  key='saved-movies' handleError={handleError} isSavedOnly={true} /> }/>}/>
         <Route path="/profile"      element={<ProtectedRoute condition={authorized} element={<PageProfile logout={logout} handleSubmit={handleUpdateMe} />}/>}  />
 
         <Route path="/signin"       element={<ProtectedRoute condition={!authorized} otherwiseRedirectTo='/profile' element={<PageAuth handleSubmit={handleSignIn}/>} /> }  />
         <Route path="/signup"       element={<ProtectedRoute condition={!authorized} otherwiseRedirectTo='/profile' element={<PageAuth handleSubmit={handleSignUp}/>} /> } />
         <Route path="*"             element={<Page404/>} />
       </Routes>
-      <Error error={error} handleClose={()=>setError('')}/>
+      {error}
     </CurrentUserContext.Provider>
   );
 }

@@ -8,7 +8,7 @@ import useFormValidation from '../useFormValidation/useFormValidation';
 import {schemaProfile} from '../../utils/validation';
 
 import './PageProfile.css';
-import languge from '../../utils/language';
+import language from '../../utils/language';
 
 const PageProfile = ( {logout, handleSubmit} ) => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -19,10 +19,10 @@ const PageProfile = ( {logout, handleSubmit} ) => {
     e.preventDefault();
     handleSubmit(values)
       .then(()=> {
-        setMessage({msg: languge.MSG_SAVE_ME, type: "info"});
+        setMessage({msg: language.MSG_SAVE_ME, type: "info"});
         setIsEditMode(false);
       })
-      .catch((e)=>setMessage({msg:languge.ERROR_SAVE_ME, type:"error"}));
+      .catch((e)=>setMessage({msg:e.message, type:"error"}));
   }
   const onClickEdit = ()=>{
     setIsEditMode(true);
