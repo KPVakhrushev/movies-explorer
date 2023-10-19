@@ -12,5 +12,5 @@ class ApiMovies extends Api{
     return this._baseUrl + movieData.image.url;
   }
 }
-
+export const apiMovies = new ApiMovies(process.env.REACT_APP_API_MOVIES);
 export default ApiMovies;

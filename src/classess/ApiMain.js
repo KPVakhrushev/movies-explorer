@@ -39,4 +39,5 @@ class ApiMain extends Api{
   }
 }
 
+export const apiMain = new ApiMain(process.env.REACT_APP_API_MY, 'include');
 export default ApiMain;

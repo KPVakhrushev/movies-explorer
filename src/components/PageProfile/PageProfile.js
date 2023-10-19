@@ -6,7 +6,6 @@ import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import Button from '../Button/Button';
 import useFormValidation from '../useFormValidation/useFormValidation';
 import {schemaProfile} from '../../utils/validation';
-import config from '../../utils/config';
 
 import './PageProfile.css';
 import languge from '../../utils/language';
@@ -50,13 +49,13 @@ const PageProfile = ( {logout, handleSubmit} ) => {
           <form className='page-profile__form' onChange={funcs.handleChange} onSubmit={onSubmit}>
               <label>
                 Имя
-                <input className="" value={values?.name} name='name' disabled={!isEditMode} onChange={()=>{}} placeholder='Имя' required={true}  pattern={config.NAME_CHECK_PATTERN}/>
+                <input className="" value={values?.name} name='name' disabled={!isEditMode} onChange={()=>{}} placeholder='Имя'/>
                 <span className='page-profile__msg page-profile__msg_type_error'>{errors?.name}</span>
               </label>
 
               <label>
                 E-mail
-                <input className="" value={values?.email} name='email' disabled={!isEditMode} onChange={()=>{}} placeholder='Email' required={true} minLength={1} maxLength={20} type='email'/>
+                <input className="" value={values?.email} name='email' disabled={!isEditMode} onChange={()=>{}} placeholder='Email' type='email'/>
                 <span className='page-profile__msg page-profile__msg_type_error'>{errors?.email}</span>
               </label>
 

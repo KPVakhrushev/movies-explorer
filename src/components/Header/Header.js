@@ -4,7 +4,7 @@ import Link from '../Link/Link';
 import Logo from '../Logo/Logo';
 import AccountButton from '../AccountButton/AccountButton';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
-import { menu as menuLinks } from '../../utils/constants';
+import { MENU as menuLinks } from '../../utils/constants';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import './Header.css';
 

@@ -8,10 +8,10 @@ import Page404 from '../Page404/Page404.js';
 import PageMovies from '../PageMovies/PageMovies.js';
 import PageProfile from '../PageProfile/PageProfile.js';
 import PageAuth from '../PageAuth/PageAuth.js';
-import  Error from '../Error/Error.js';
+import Error from '../Error/Error.js';
 
 import './App.css';
-import { apiMain } from '../../utils/constants.js';
+import { apiMain } from '../../classess/ApiMain.js';
 import languge from '../../utils/language.js';
 
 function App() {
@@ -38,8 +38,9 @@ function App() {
     localStorage.clear();
   }
   const handleError = (e, message='')=>{
-    if(message)setError(message);
     if(process.env.NODE_ENV==="development") console.log(e);
+    if(message) return setError(message);
+    else return e;
   }
   const handleSignIn= (user)=>{
     return handleAuth(user, apiMain.signIn)
@@ -55,7 +56,7 @@ function App() {
         resolve();
         navigate('/movies',{ replace: true });
 
-      }).catch( ()=> reject(languge.ERROR_AUTH) )
+      }).catch( ()=> reject(languge.ERROR_) )
     });
   }
   const handleUpdateMe = (values)=>{

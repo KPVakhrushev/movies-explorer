@@ -9,13 +9,13 @@ import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader'
 
 import language from '../../utils/language.js';
-import config from '../../utils/config';
+import {COUNT_CARDS_BY_WIDTH} from '../../utils/constants.js';
 import './PageMovies.css';
 
 
 const PageMovies = ({isSavedOnly=false, handleError}) => {
   const user = React.useContext(CurrentUserContext);
-  const getCountCards = ()=> config.COUNT_CARDS_BY_WIDTH.find(param => window.innerWidth < param[2]);
+  const getCountCards = ()=> COUNT_CARDS_BY_WIDTH.find(param => window.innerWidth < param[2]);
   useEffect(() => {
     const handleWindowResize = () => setMoviesOnPage(getCountCards()[0]);
     window.addEventListener('resize', handleWindowResize);

@@ -1,5 +1,6 @@
-import { apiMain, apiMovies} from '../utils/constants';
-import config from '../utils/config';
+import { apiMain } from '../classess/ApiMain';
+import { apiMovies } from '../classess/ApiMovies';
+import {DURATION_SHORT_MOVIES} from '../utils/constants';
 import Movie from './Movie';
 class MoviesFactory {
   static #loaded;
@@ -75,7 +76,7 @@ class MoviesFactory {
     const filtered = items.filter(item=>{
       const phraseLc = this.#filter.phrase.toLowerCase();
       const matchPhrase = !phraseLc || item.nameRU.toLowerCase().includes(phraseLc) || item.nameEN.toLowerCase().includes(phraseLc);
-      const matchShort = !this.#filter.short || item.duration <= config.DURATION_SHORT_MOVIES;
+      const matchShort = !this.#filter.short || item.duration <= DURATION_SHORT_MOVIES;
       const matchSaved = !this.#isSavedOnly || item.id;
       return matchPhrase && matchSaved && matchShort;
     })

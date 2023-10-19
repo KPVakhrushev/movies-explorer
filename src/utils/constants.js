@@ -1,9 +1,4 @@
-import ApiMain from "../classess/ApiMain";
-import ApiMovies from "../classess/ApiMovies"
-
-export const apiMovies = new ApiMovies(process.env.REACT_APP_API_MOVIES);
-export const apiMain = new ApiMain(process.env.REACT_APP_API_MY, 'include');
-export const menu = [
+export const MENU = [
   {
     link: '/movies',
     title: 'Фильмы'
@@ -13,3 +8,8 @@ export const menu = [
     title: 'Сохранённые фильмы'
   },
 ];
+export const DURATION_SHORT_MOVIES = 40;
+export const COUNT_CARDS_BY_WIDTH = [[5, 2, 480], [8, 2, 1024], [16, 4,  999999] ]; /* [начальное кол-во карточек, кол-во карточке по кнопке ЕЩЁ , ширина в px до котрой применяются настройки] */
+export const HTTP_CODES = {
+
+}
