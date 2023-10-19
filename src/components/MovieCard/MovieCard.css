@@ -27,9 +27,13 @@
 }
 .movie-card__save:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 .movie-card__save_saved {
   background-image: url('../../images/saved.svg');
+}
+.movie-card__save_tmpl_remove {
+  background-image: url('../../images/remove.svg');
 }
 .movie-card__image {
   width: 100%;
