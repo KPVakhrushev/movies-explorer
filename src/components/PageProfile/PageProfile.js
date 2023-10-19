@@ -5,8 +5,8 @@ import Title from '../Title/Title';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import Button from '../Button/Button';
 import useFormValidation from '../useFormValidation/useFormValidation';
+import {schemaProfile} from '../../utils/validation';
 import config from '../../utils/config';
-import { apiMain } from '../../utils/constants.js';
 
 import './PageProfile.css';
 import languge from '../../utils/language';
@@ -29,7 +29,7 @@ const PageProfile = ( {logout, handleSubmit} ) => {
     setIsEditMode(true);
     setMessage({});
   }
-  const {values, errors, ...funcs } =  useFormValidation({});
+  const {values, errors, ...funcs } =  useFormValidation({}, schemaProfile);
   const actions = <>
     <Link onClick={onClickEdit}>Редактировать</Link>
     <Link className='page-profile__logout' onClick={logout}>Выйти из аккаунта</Link>
@@ -51,13 +51,13 @@ const PageProfile = ( {logout, handleSubmit} ) => {
               <label>
                 Имя
                 <input className="" value={values?.name} name='name' disabled={!isEditMode} onChange={()=>{}} placeholder='Имя' required={true}  pattern={config.NAME_CHECK_PATTERN}/>
-                <span className='page-profile__error'>{errors?.name}</span>
+                <span className='page-profile__msg page-profile__msg_type_error'>{errors?.name}</span>
               </label>
 
               <label>
                 E-mail
                 <input className="" value={values?.email} name='email' disabled={!isEditMode} onChange={()=>{}} placeholder='Email' required={true} minLength={1} maxLength={20} type='email'/>
-                <span className='page-profile__error'>{errors?.email}</span>
+                <span className='page-profile__msg page-profile__msg_type_error'>{errors?.email}</span>
               </label>
 
 

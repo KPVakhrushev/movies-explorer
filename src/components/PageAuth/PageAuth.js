@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import config from '../../utils/config';
+import {schemaRegistration, schemaLogin} from '../../utils/validation';
 
 import Link from '../Link/Link';
 import Form from '../Form/Form';
@@ -12,9 +12,9 @@ import './PageAuth.css';
 
 function PageAuth({handleSubmit}){
   const location = useLocation();
-  const fieldTitle = {title:'Имя', name:"name", pattern:config.NAME_CHECK_PATTERN, required: true, placeholder:"Имя", errormsg:"Доупустимые символы: буквы, цифры, дефис, пробел. Мин. длина 1 символ" };
-  const fieldEmail = {title:'Email', name:"email", type:"email" ,minLength:5, maxLength:200, required: true, placeholder:"email@mail.ru"};
-  const fieldPswd  = {title:'Пароль',name:"password", type:"password", minLength:3, maxLength:20, required:true, placeholder:"Пароль", autoComplete:"off"};
+  const fieldTitle = {title:'Имя', name:"name", placeholder:"Имя" };
+  const fieldEmail = {title:'Email', name:"email", placeholder:"email@mail.ru"};
+  const fieldPswd  = {title:'Пароль',name:"password", type:"password", placeholder:"Пароль", autoComplete:"off"};
 
   const pageConfigs = {
     '/signin':{
@@ -22,14 +22,14 @@ function PageAuth({handleSubmit}){
       question: "Ещё не зарегистрированы?",
       linkTitle: 'Регистрация',
       link: '/signup',
-      form: { title: 'Войти', handleSubmit, fields:[ fieldEmail, fieldPswd]}
+      form: { title: 'Войти', handleSubmit, fields:[ fieldEmail, fieldPswd], validation: schemaLogin }
     },
     '/signup': {
       title: 'Добро пожаловать!',
       question: 'Уже зарегистрированы?',
       linkTitle: 'Войти',
       link: '/signin',
-      form: {title: 'Зарегистрироваться', handleSubmit, fields:[fieldTitle, fieldEmail, fieldPswd]}
+      form: {title: 'Зарегистрироваться', handleSubmit, fields:[fieldTitle, fieldEmail, fieldPswd], validation:schemaRegistration }
     }
   }
   const pageConfig = pageConfigs[location.pathname];

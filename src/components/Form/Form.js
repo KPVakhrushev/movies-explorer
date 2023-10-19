@@ -5,12 +5,12 @@ import useFormValidation from '../useFormValidation/useFormValidation';
 
 import './Form.css';
 
-function Form({title, handleSubmit, fields, className, ...props}){
+function Form({title, handleSubmit, fields, className, validation, ...props}){
   const onSubmit = (event) => {
     event.preventDefault();
     handleSubmit(values).catch((e)=>funcs.setErrors({submit:e}));
   };
-  const {values, errors, ...funcs } =  useFormValidation({});
+  const {values, errors, ...funcs } =  useFormValidation({}, validation);
   React.useEffect(() => {
     funcs.setValues({});
     funcs.setErrors({});

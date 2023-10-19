@@ -1,34 +1,24 @@
 import React from 'react';
 
-const useFormValidation = (callback, initialValues={}) => {
+const useFormValidation = (initialValues={}, joiScheme) => {
   const [values, setValues] = React.useState(initialValues);
   const [errors, setErrors] = React.useState({});
   const handleChange = (event) => {
     event.persist();
-    const error = !event.target.validity.valid? (event.target.getAttribute('errormsg')?? event.target.validationMessage) :'';
-    const submitDisabled = !event.currentTarget.checkValidity();
+    const newValues = { ...values, [event.target.name]: event.target.value };
+    const validity  = joiScheme.validate(newValues, {abortEarly :false});
+
     setErrors((errors)=>{
-      errors.submit = '';
-      errors.submit = submitDisabled;
-      if(!error){
-        delete errors[event.target.name];
-        return errors;
-      }
-      else{
-        return  {...errors, [event.target.name]: error};
-      }
+      const newErrors = {}
+      validity.error?.details.forEach(er => {
+        newErrors[er.path[0]] = er.message
+      })
+      newErrors.submit = Boolean(validity.error);
+      return newErrors;
     })
-    setValues(values => ({ ...values, [event.target.name]: event.target.value }));
+    setValues(newValues);
   };
-  React.useEffect(() => {
-    //setValues(data);
-  });
-  return {
-    handleChange,
-    values,
-    errors,
-    setValues,
-    setErrors
-  }
+
+  return { handleChange, values, errors, setValues, setErrors }
 };
 export default useFormValidation;
