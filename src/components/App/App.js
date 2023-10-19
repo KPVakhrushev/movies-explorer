@@ -23,7 +23,6 @@ function App() {
       setUser(answer);
     })
     .catch((er)=>{
-      debugger;
       logout();
       setUser({});
       if(er.status!==404 && er.status!==401) handleError(er, languge.ERROR_AUTH);
