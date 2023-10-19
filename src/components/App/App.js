@@ -9,6 +9,7 @@ import PageMovies from '../PageMovies/PageMovies.js';
 import PageProfile from '../PageProfile/PageProfile.js';
 import PageAuth from '../PageAuth/PageAuth.js';
 import Error from '../Error/Error.js';
+import language from '../../utils/language.js';
 
 import './App.css';
 import { apiMain } from '../../classess/ApiMain.js';
@@ -37,7 +38,7 @@ function App() {
       setUser({});
       navigate('/', { replace: true });
     })
-    .catch(e=>handleError(e))
+    .catch(e=>handleError(language.ERROR_ON_SERVER))
     localStorage.clear();
   }
 
