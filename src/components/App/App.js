@@ -66,16 +66,18 @@ function App() {
       getUser();
     }
   }, [user]);
+
+  const authorized = user===undefined?undefined:Boolean(user?._id);
   return (
     <CurrentUserContext.Provider value={user}>
       <Routes>
         <Route path="/"             element={<Lending/>}/>
-        <Route path="/movies"       element={<ProtectedRoute element={<PageMovies handleError={handleError}/> } key='movies'/>} />
-        <Route path="/saved-movies" element={<ProtectedRoute element={<PageMovies handleError={handleError}  key='saved-movies' isSavedOnly={true}  /> }/>} />
-        <Route path="/profile"      element={<ProtectedRoute element={<PageProfile logout={logout} handleSubmit={handleUpdateMe} />}/>} />
+        <Route path="/movies"       element={<ProtectedRoute condition={authorized} element={<PageMovies handleError={handleError}  key='movies'/> }  />}/>
+        <Route path="/saved-movies" element={<ProtectedRoute condition={authorized} element={<PageMovies handleError={handleError}  key='saved-movies' isSavedOnly={true}  /> }/>}/>
+        <Route path="/profile"      element={<ProtectedRoute condition={authorized} element={<PageProfile logout={logout} handleSubmit={handleUpdateMe} />}/>}  />
 
-        <Route path="/signin"       element={<PageAuth handleSubmit={handleSignIn}/>} />
-        <Route path="/signup"       element={<PageAuth handleSubmit={handleSignUp}/>} />
+        <Route path="/signin"       element={<ProtectedRoute condition={!authorized} otherwiseRedirectTo='/profile' element={<PageAuth handleSubmit={handleSignIn}/>} /> }  />
+        <Route path="/signup"       element={<ProtectedRoute condition={!authorized} otherwiseRedirectTo='/profile' element={<PageAuth handleSubmit={handleSignUp}/>} /> } />
         <Route path="*"             element={<Page404/>} />
       </Routes>
       <Error error={error} handleClose={()=>setError('')}/>
