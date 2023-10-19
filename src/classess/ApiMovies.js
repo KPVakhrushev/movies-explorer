@@ -2,7 +2,7 @@ import Api from './Api.js';
 
 class ApiMovies extends Api{
   get() {
-    return this._json('/beatfilm-movies');
+    return this._json('GET', '/beatfilm-movies');
   }
 
   getThumbUrl(movieData){
