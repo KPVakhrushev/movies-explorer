@@ -15,6 +15,7 @@ const PageProfile = ( {logout, handleSubmit} ) => {
   const user = React.useContext(CurrentUserContext);
   const [msg, setMessage] = useState({});
 
+
   const onSubmit = (e) => {
     e.preventDefault();
     handleSubmit(values)
@@ -33,12 +34,15 @@ const PageProfile = ( {logout, handleSubmit} ) => {
     <Link onClick={onClickEdit}>Редактировать</Link>
     <Link className='page-profile__logout' onClick={logout}>Выйти из аккаунта</Link>
   </>;
-  const saveButton = <Button disabled={errors?.submit??true}>Сохранить</Button>
+  const oldState = JSON.stringify({name:user?.name, email:user?.email})
+  const newState = JSON.stringify(values)
+  const saveButton = <Button disabled={errors?.submit || oldState===newState}>Сохранить</Button>
 
   React.useEffect(() => {
     funcs.setValues({name:user?.name, email:user?.email});
     funcs.setErrors({});
   }, [user]);
+
 
   return (
     <div className='page-profile'>
