@@ -1,12 +1,11 @@
 import React from 'react';
 import './FormInput.css';
 
-const  FormInput = ( {title, ...props} ) => {
-  const [value, setValue] = React.useState('');
+const  FormInput = ( {title, onChange, value, className='', ...props} ) => {
   return (
-    <label className="form-input">
+    <label className={`form-input ${className??''}`}>
       {title}
-      <input className="form-input__input" {...props} value={value}  onChange={(e)=>setValue(e.target.value)}/>
+      <input className="form-input__input" {...props} value={value}  onChange={onChange} />
     </label>
   )
 }

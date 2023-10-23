@@ -13,7 +13,7 @@ const  Promo = ( ) => {
       <p className='promo__subtitle'>
         Листайте ниже, чтобы узнать больше про этот проект и его создателя.
       </p>
-      <Link className='promo__more-link' onClick={scrollTo('about-project')}>Узнать больше</Link>
+      <Link className='promo__more-link' onClick={()=>scrollTo('about-project')}>Узнать больше</Link>
     </section>
   )
 }

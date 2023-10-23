@@ -1,11 +1,11 @@
 import React from 'react';
-import { menu } from '../../utils/constants';
+import { MENU } from '../../utils/constants';
 import Link from '../Link/Link';
 import AccountButton from '../AccountButton/AccountButton';
 import './MobileMenu.css';
 
 const MobileMenu = ( {opened, onClose} ) => {
-  const links = [{ link: '/', title: 'Главная' }].concat(menu) ;
+  const links = [{ link: '/', title: 'Главная' }].concat(MENU) ;
 
   return (
     <div className={'mobile-menu '+ (opened?'mobile-menu_opened':'')}  onClick={onClose}>

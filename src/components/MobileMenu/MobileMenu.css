@@ -60,7 +60,7 @@
   right: 20px;
   top: 20px;
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width:480px) {
   .mobile-menu__container {
     padding: 145px 0 45px;
     gap: 25px;

@@ -63,7 +63,7 @@
     font-weight: 400;
   }
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width:480px) {
   .project {
     padding: 70px 0 60px;
   }

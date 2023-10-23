@@ -35,7 +35,7 @@
     margin: 60px auto 80px;
   }
 }
-@media screen and (max-width:550px) {
+@media screen and (max-width:480px) {
   .page-movies {
     padding: 0 10px;
   }

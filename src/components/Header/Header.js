@@ -4,13 +4,13 @@ import Link from '../Link/Link';
 import Logo from '../Logo/Logo';
 import AccountButton from '../AccountButton/AccountButton';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
-import { menu as menuLinks } from '../../utils/constants';
+import { MENU as menuLinks } from '../../utils/constants';
 import MobileMenu from '../MobileMenu/MobileMenu';
 import './Header.css';
 
 const  Header = ( {theme='', className=''} ) => {
   const user = React.useContext(CurrentUserContext);
-  const logged = Boolean(user?.name);
+  const logged = Boolean(user?.email);
   const isMobile = useMediaQuery({ query: '(max-width:768px)' })
   const [menuOpened, setMenuOpened] = useState(false);
   const handleCloseMenu = ()=> setMenuOpened(false);

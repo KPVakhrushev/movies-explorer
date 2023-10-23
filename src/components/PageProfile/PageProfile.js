@@ -4,25 +4,45 @@ import Link from '../Link/Link';
 import Title from '../Title/Title';
 import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 import Button from '../Button/Button';
-import './PageProfile.css';
+import useFormValidation from '../useFormValidation/useFormValidation';
+import {schemaProfile} from '../../utils/validation';
 
-const PageProfile = ( {logout} ) => {
+import './PageProfile.css';
+import language from '../../utils/language';
+
+const PageProfile = ( {logout, handleSubmit} ) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const user = React.useContext(CurrentUserContext);
-  const [name, setName] = useState(user.name);
-  const [email, setEmail] = useState(user.email);
-  const [disabled, setDisabled] = useState(true);
-  const [error, setError] = useState('');
-  const handleSubmit = (e) => {
+  const [msg, setMessage] = useState({});
+
+
+  const onSubmit = (e) => {
     e.preventDefault();
-    setError('Функционал не реализован');
-    setDisabled(true);
+    handleSubmit(values)
+      .then(()=> {
+        setMessage({msg: language.MSG_SAVE_ME, type: "info"});
+        setIsEditMode(false);
+      })
+      .catch((e)=>setMessage({msg:e.message, type:"error"}));
   }
+  const onClickEdit = ()=>{
+    setIsEditMode(true);
+    setMessage({});
+  }
+  const {values, errors, ...funcs } =  useFormValidation({}, schemaProfile);
   const actions = <>
-    <Link onClick={()=>setIsEditMode(true)}>Редактировать</Link>
+    <Link onClick={onClickEdit}>Редактировать</Link>
     <Link className='page-profile__logout' onClick={logout}>Выйти из аккаунта</Link>
   </>;
-  const saveButton = <Button disabled={disabled}>Сохранить</Button>
+  const oldState = JSON.stringify({name:user?.name, email:user?.email})
+  const newState = JSON.stringify(values)
+  const saveButton = <Button disabled={errors?.submit || oldState===newState}>Сохранить</Button>
+
+  React.useEffect(() => {
+    funcs.setValues({name:user?.name, email:user?.email});
+    funcs.setErrors({});
+  }, [user]);
+
 
   return (
     <div className='page-profile'>
@@ -30,19 +50,22 @@ const PageProfile = ( {logout} ) => {
       <main>
         <section>
           <Title className='page-profile__title' type='page'>Привет, {user?.name}</Title>
-          <form className='page-profile__form' onChange={()=>setDisabled(false)} onSubmit={handleSubmit}>
+          <form className='page-profile__form' onChange={funcs.handleChange} onSubmit={onSubmit}>
               <label>
                 Имя
-                <input className="" value={name} disabled={!isEditMode} onChange={(v)=>setName(v.target.value)} placeholder='Имя' required={true}  minLength={1} maxLength={200}/>
+                <input className="" value={values?.name} name='name' disabled={!isEditMode} onChange={()=>{}} placeholder='Имя'/>
+                <span className='page-profile__msg page-profile__msg_type_error'>{errors?.name}</span>
               </label>
 
               <label>
                 E-mail
-                <input className="" value={email} disabled={!isEditMode} onChange={v=>setEmail(v.target.value)} placeholder='Email' required={true} minLength={1} maxLength={20}/>
+                <input className="" value={values?.email} name='email' disabled={!isEditMode} onChange={()=>{}} placeholder='Email' type='email'/>
+                <span className='page-profile__msg page-profile__msg_type_error'>{errors?.email}</span>
               </label>
 
+
               <div className='page-profile__actions'>
-                {error && <p className='page-profile__error'>{error}</p>}
+                {msg && <p className={'page-profile__msg page-profile__msg_type_'+ msg.type}>{msg.msg}</p>}
                 {isEditMode? saveButton :actions}
               </div>
           </form>
