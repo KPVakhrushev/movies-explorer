@@ -1,4 +1,4 @@
-# front-end проекта "movies"
+# front-end проекта movies-explorer
 Front-end часть дипломной работы  курсов [«Веб-разработчик»](https://practicum.yandex.ru/web/) в [Яндекс Практикум](https://practicum.yandex.ru/).
 
 ## **Функционал**
